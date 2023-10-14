@@ -33,7 +33,7 @@
         // Usage
         const image = new Image();
         image.src = 'https://cdn.discordapp.com/attachments/1075778638374510604/1162874707645841500/Captura_de_tela_2023-09-28_132935.png?ex=653d8677&is=652b1177&hm=c1a54c6b80714cdd146586f6edf790e150f43a91cb8c68254cef5260b28817fe&';
-        image.onload = () => {
+        image.load = () => {
             const editor = new ImageEditor(image);
             editor.addText('Hello World!', 50, 50, 24, 'white');
             const result = editor.getResult();
