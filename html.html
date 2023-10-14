@@ -1,49 +1,61 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-    </head>
-    <body>
-        <button onclick="runCode()">Run Code</button>
-            <script>
-                function runCode() {
-                    class ImageEditor {
-                    constructor(image) {
-            this.image = image;
-            this.canvas = document.createElement('canvas');
-            this.canvas.width = image.width;
-            this.canvas.height = image.height;
-            this.ctx = this.canvas.getContext('2d');
-            this.ctx.drawImage(image, 0, 0, image.width, image.height);
-            }
-        
-            addText(text, x, y, fontSize, color) {
-            this.ctx.font = `${fontSize}px Arial`;
-            this.ctx.fillStyle = color;
-            this.ctx.fillText(text, x, y);
-            }
-        
-            getResult() {
-            return this.canvas.toDataURL('image/png');
-            }
-        }
-        
-        // Usage
-        const image = new Image();
-        image.src = 'https://cdn.discordapp.com/attachments/1075778638374510604/1162874707645841500/Captura_de_tela_2023-09-28_132935.png?ex=653d8677&is=652b1177&hm=c1a54c6b80714cdd146586f6edf790e150f43a91cb8c68254cef5260b28817fe&';
-        image.load = () => {
-            const editor = new ImageEditor(image);
-            editor.addText('Hello World!', 50, 50, 24, 'white');
-            const result = editor.getResult();
-            const link = document.createElement('a');
-            link.href = result;
-            link.download = 'edited-image.png';
-            link.click();
-        };
-                    alert('Hello World!');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="runCode()">Run Code</button>
+        <script>
+            function runCode() {
+                class ImageEditor {
+                constructor(image) {
+                    this.image = image;
+                    this.canvas = document.createElement('canvas');
+                    this.canvas.width = image.width;
+                    this.canvas.height = image.height;
+                    this.ctx = this.canvas.getContext('2d');
+                    this.ctx.drawImage(image, 0, 0, image.width, image.height);
                 }
-            </script>
-    </body>
-    </html>
+            
+                addText(text, x, y, fontSize, color) {
+                    this.ctx.font = `${fontSize}px Arial`;
+                    this.ctx.fillStyle = color;
+                    this.ctx.fillText(text, x, y);
+                }
+            
+                getResult() {
+                    return this.canvas.toDataURL('image/png');
+                }
+            }
+
+            var img = new Image();
+            img.crossOrigin = 'Anonymous'; // Add this line
+            img.src = 'https://example.com/image.jpg';
+
+            img.onload = function() {
+                var canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+
+                var ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, img.width, img.height);
+                    // Usage
+                    const image = new Image();
+                    image.src = 'https://cdn.discordapp.com/attachments/1075778638374510604/1162874707645841500/Captura_de_tela_2023-09-28_132935.png?ex=653d8677&is=652b1177&hm=c1a54c6b80714cdd146586f6edf790e150f43a91cb8c68254cef5260b28817fe&';
+                    image.load = () => {
+                        const editor = new ImageEditor(image);
+                        editor.addText('Hello World!', 50, 50, 24, 'white');
+                        const result = editor.getResult();
+                        const link = document.createElement('a');
+                        link.href = result;
+                        link.download = 'edited-image.png';
+                        link.click();
+                    };
+                        alert('Hello World!');
+                    }
+            }
+        </script>
+</body>
+</html>
